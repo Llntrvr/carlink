@@ -1,7 +1,19 @@
 # CarLink (CL7) for Home Assistant
 
-Unofficial Home Assistant integration for **VOXX CarLink** cellular remote-start modules (ASCL7, the **CL7** app).
-It remote starts and stops the car and shows its status. **It never touches the door locks.**
+> [!WARNING]
+> **Unofficial.** This is not made, supported or endorsed by VOXX, CarLink or Automobility.
+>
+> **100% vibe coded.** It was built with an AI assistant by reading the CL7 app and testing against one account
+> and one car. It hasn't been reviewed or tested beyond that.
+>
+> **Remote start only.** It can start and stop the engine. It does **not** lock or unlock the car doors, and
+> it has no way to: the only commands it can send are remote start and stop.
+>
+> **No guarantee it keeps working.** It relies on a private service that can change at any time, so we can't
+> promise it will still work next week. Use it at your own risk.
+
+Home Assistant integration for **VOXX CarLink** cellular remote-start modules (ASCL7, the **CL7** app).
+It remote starts and stops the car and shows its status.
 
 It talks to the same cloud as the CL7 app: AWS Cognito login (us-east-1), then `https://api.mybrandedapp.com`.
 Worked out from the CL7 Android app (v1.4.0) and the account's own API answers; VOXX publishes no API, so it may
