@@ -1,7 +1,8 @@
-"""Unofficial CarLink (VOXX CL7) integration: remote start / stop and status. Never touches the door locks.
+"""Unofficial CarLink (VOXX CL7) integration: remote start / stop, door lock / unlock, accessories and status.
 
 Talks to the same cloud as the CL7 app (AWS Cognito login, api.mybrandedapp.com). Remote start is a lock
-entity (unlock = start, carCommand 3; lock = stop, 4); sensors read the module's last reported status.
+entity (unlock = start, carCommand 3; lock = stop, 4), the doors are a second lock (0 / 1), each accessory
+from the app is a button; sensors read the module's last reported status.
 """
 from __future__ import annotations
 
@@ -15,7 +16,7 @@ from .api import CarLinkAuthError, CarLinkClient, CarLinkError
 from .const import DOMAIN
 from .coordinator import CarLinkCoordinator
 
-PLATFORMS = [Platform.LOCK, Platform.BINARY_SENSOR, Platform.SENSOR, Platform.DEVICE_TRACKER]
+PLATFORMS = [Platform.LOCK, Platform.BUTTON, Platform.BINARY_SENSOR, Platform.SENSOR, Platform.DEVICE_TRACKER]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

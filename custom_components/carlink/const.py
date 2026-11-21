@@ -9,11 +9,15 @@ COGNITO_CLIENT_ID = "3t704g14i0l52mfkt77ldaoshp"
 API_BASE = "https://api.mybrandedapp.com/CarstarterService/"
 APP_BRAND = "MyCar2"
 
-# The only commands this integration can send (confirmed from the account's command history:
-# the CL7 app's Remote Start logs carCommand 3, its Stop logs 4). Lock/unlock/trunk are deliberately absent.
+# carCommand numbers, confirmed against the account's command history and the car.
+CMD_LOCK = 0
+CMD_UNLOCK = 1
+CMD_TRUNK = 2
 CMD_START = 3
 CMD_STOP = 4
-ALLOWED_COMMANDS = frozenset({CMD_START, CMD_STOP})
+# Always allowed. Accessory commands are allowed too, but only those listed in the vehicle's own "Aux" list
+# (set up in the CL7 app). Anything else is refused.
+BASE_COMMANDS = frozenset({CMD_LOCK, CMD_UNLOCK, CMD_TRUNK, CMD_START, CMD_STOP})
 
 # Stored status is read from the cloud (it doesn't wake the car): quicker while the engine runs.
 SCAN_INTERVAL = timedelta(minutes=3)

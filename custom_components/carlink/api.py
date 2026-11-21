@@ -1,8 +1,7 @@
 """Client for the CarLink cloud: AWS Cognito login, then api.mybrandedapp.com with the ID token.
 
-Unofficial: worked out from the CL7 app and the account's own API answers. It can send exactly two
-commands, remote start and stop; there is no lock, unlock or trunk method, and send_command refuses
-anything else.
+Unofficial: worked out from the CL7 app and the account's own API answers. send_command only sends door
+lock/unlock, trunk release, remote start/stop and the accessory commands set up for that car; it refuses anything else.
 """
 from __future__ import annotations
 
@@ -11,7 +10,7 @@ from typing import Any
 
 import aiohttp
 
-from .const import ALLOWED_COMMANDS, API_BASE, APP_BRAND, COGNITO_CLIENT_ID, COGNITO_URL
+from .const import API_BASE, BASE_COMMANDS, APP_BRAND, COGNITO_CLIENT_ID, COGNITO_URL
 
 
 class CarLinkAuthError(Exception):
@@ -99,9 +98,9 @@ class CarLinkClient:
         """Last status the module reported (stored in the cloud; reading it doesn't wake the car)."""
         return await self._request("GET", f"GetLastVehicleStatus/{vehicle_id}") or {}
 
-    async def send_command(self, vehicle_id: str, command: int) -> Any:
-        """Remote start (3) or stop (4) only."""
-        if command not in ALLOWED_COMMANDS:
+    async def send_command(self, vehicle_id: str, command: int, aux_commands: frozenset[int] = frozenset()) -> Any:
+        """Lock (0), unlock (1), trunk (2), start (3), stop (4), or one of the car's own accessory commands."""
+        if command not in BASE_COMMANDS and command not in aux_commands:
             raise ValueError(f"CarLink command {command} is not allowed by this integration")
         result = await self._request("POST", "SendCarCommand", {"vehicleId": vehicle_id, "carCommand": command})
         if isinstance(result, dict) and result.get("Result") is False:

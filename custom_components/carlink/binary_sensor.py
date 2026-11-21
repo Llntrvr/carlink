@@ -1,5 +1,5 @@
-"""Engine running, doors / trunk / hood open, module online. (The lock reading is left out: the
-cloud's Status_Lock didn't match the car.)"""
+"""Engine running, doors / trunk / hood open, module online. (The cloud's lock reading is left out: its
+Status_Lock didn't match the car.)"""
 from __future__ import annotations
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass, BinarySensorEntity

@@ -38,5 +38,14 @@ class CarLinkEntity(CoordinatorEntity[CarLinkCoordinator]):
         return (self.coordinator.data or {}).get(self.vehicle_id, {}).get("status", {})
 
     @property
+    def aux(self) -> list[dict[str, Any]]:
+        """Accessories set up in the CL7 app: [{"AuxilliaryOptionId", "CarCommand", "Position", "Label", "Icon"}]."""
+        return [a for a in self.vehicle.get("Aux") or [] if isinstance(a.get("CarCommand"), int)]
+
+    async def _command(self, command: int) -> None:
+        await self.coordinator.client.send_command(
+            self.vehicle_id, command, frozenset(a["CarCommand"] for a in self.aux))
+
+    @property
     def available(self) -> bool:
         return super().available and self.vehicle_id in (self.coordinator.data or {})
