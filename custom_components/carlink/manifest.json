@@ -1,0 +1,11 @@
+{
+  "domain": "carlink",
+  "name": "CarLink (CL7)",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://carlink.voxxelectronics.com/",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "0.1.0"
+}

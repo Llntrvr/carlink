@@ -1,0 +1,16 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CarLink (CL7)",
+        "description": "Sign in with the email and password you use in the CL7 app.",
+        "data": { "username": "Email", "password": "Password" }
+      }
+    },
+    "error": {
+      "invalid_auth": "That email and password weren't accepted.",
+      "cannot_connect": "Couldn't reach the CarLink service."
+    },
+    "abort": { "already_configured": "This CarLink account is already set up." }
+  }
+}
