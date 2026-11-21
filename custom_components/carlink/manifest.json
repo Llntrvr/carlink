@@ -1,11 +1,14 @@
 {
   "domain": "carlink",
   "name": "CarLink (CL7)",
-  "codeowners": [],
+  "codeowners": [
+    "@Llntrvr"
+  ],
   "config_flow": true,
-  "documentation": "https://carlink.voxxelectronics.com/",
+  "documentation": "https://github.com/Llntrvr/carlink",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Llntrvr/carlink/issues",
   "requirements": [],
   "version": "0.1.0"
 }
