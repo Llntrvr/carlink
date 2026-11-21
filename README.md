@@ -21,6 +21,14 @@ break if they change their service.
 
 ## Install
 
+### With HACS
+
+1. **HACS → ⋮ (top right) → Custom repositories**: add `https://github.com/Llntrvr/carlink`, type **Integration**.
+2. Find **CarLink (CL7)** in HACS, **Download**, then restart Home Assistant.
+3. **Settings → Devices & services → Add integration → CarLink (CL7)**, then sign in with your CL7 email and password.
+
+### By hand
+
 1. Copy `custom_components/carlink` to `/config/custom_components/carlink` on Home Assistant and restart.
 2. **Settings → Devices & services → Add integration → CarLink (CL7)**, then sign in with your CL7 email and password.
 
